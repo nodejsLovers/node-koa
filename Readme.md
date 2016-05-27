@@ -20,7 +20,7 @@ summary: 最近在学习node，所以听说node和mongodb更配哦。。所以�
 `mongod --shutdown`
 
 
-##二、mongodb的操作##  
+## 二、mongodb的操作 ##  
 
 1. 连接服务器  
 `mongod 115.29.137.34:27017`  
