@@ -1,9 +1,9 @@
 {
   "name": "node-koa",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "scripts": {
-    "createtag": "git tag -a 0.1.0 -m Release^-^",
+    "createtag": "git tag -a 0.1.1 -m Release^-^",
     "pushtag": "git push origin --tags",
     "tag": "npm run createtag && npm run pushtag",
     "start": "node ./bin/www"
