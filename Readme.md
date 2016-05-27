@@ -226,7 +226,7 @@ Comment.pre('save', function (next) {
       createTime:Date,
       lastLogin:Date
     })
-  mongoose.model('User',UserSchema);
+  module.exports = mongoose.model('User',UserSchema);
 ```
 
 5. 创建配置文件  

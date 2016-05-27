@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "createtag": "git tag -a 0.1.0 -m Release^-^",
+    "pushtag": "git push origin --tags",
+    "tag": "npm run createtag && npm run pushtag",
     "start": "node ./bin/www"
   },
   "dependencies": {
@@ -13,9 +16,11 @@
     "koa-bodyparser": "^2.0.1",
     "koa-json": "^1.1.1",
     "koa-logger": "^1.3.0",
+    "koa-mongoose": "^1.0.9",
     "koa-onerror": "^1.2.1",
     "koa-router": "^5.3.0",
     "koa-static": "^1.5.2",
-    "koa-views": "^3.1.0"
+    "koa-views": "^3.1.0",
+    "mongoose": "^4.4.19"
   }
 }
