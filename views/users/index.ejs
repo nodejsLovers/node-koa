@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css'/>
+    <% include ./../common/header.ejs %>
+</head>
+<body>
+<h1><%= title %></h1>
+<ul id="users">
+    <% if (users.length) { %>
+        <% users.forEach(function(user){ %>
+        <li><%= user.name %></li>
+        <% }) %>
+    <% } %>
+</ul>
+</body>
+</html>
