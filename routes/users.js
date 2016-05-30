@@ -8,18 +8,17 @@ router.get('/new', add)
 
 
 function *list(next) {
-    var users = yield User.find({});
-    console.log(users);
+    var result = yield User.find({});
+    console.log(result);
     yield this.render('/users/index', {
         title: '用户列表',
-        users: users
+        users: result
     })
 }
 
-
 function *add(next) {
     yield this.render('new', {
-        title: '添加用户!'
+        title: '添加用户'
     });
 }
 
