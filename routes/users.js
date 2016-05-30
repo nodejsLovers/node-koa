@@ -4,7 +4,7 @@ var User = mongoose.model('User');
 router.get('/', list);
 
 router.get('/list', list);
-router.get('/new', add)
+router.get('/new', add);
 
 
 function *list(next) {
