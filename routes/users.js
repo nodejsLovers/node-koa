@@ -5,7 +5,7 @@ router.get('/', list);
 
 router.get('/list', list);
 router.get('/new', add);
-router.post('/create',save);
+router.post('/create', save);
 
 
 function *list(next) {
@@ -20,13 +20,12 @@ function *list(next) {
 function *add(next) {
     yield this.render('/users/new', {
         title: '添加用户',
-        user:{
+        user: {
             email: '',
             nickName: '',
             password: '',
-            salt: '',
             gender: 0,
-            phone: 0,
+            phone: 1,
             imgUrl: '',
             address: ''
         }
@@ -35,11 +34,12 @@ function *add(next) {
 
 function *save(next) {
     console.log(this.request.body);
-    var user = yield parse(this);
+    var user = this.request.body;
     user.createTime = new Date;
-    users.lastLogin = new Date;
+    user.lastLogin = new Date;
     var id = users.push(user)
-    this.redirect('/');
+    users.id = id - 1;
+    this.redirect('/users');
 }
 
 

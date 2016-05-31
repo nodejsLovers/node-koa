@@ -11,47 +11,47 @@
             <div class="form-group">
                 <label for="email" class="col-sm-2 control-label">邮箱</label>
                 <div class="col-sm-10">
-                    <input type="email" class="form-control" id="email" placeholder="邮箱" value="<%= user.email%>">
+                    <input type="email" class="form-control" id="email" placeholder="邮箱" value="<%= user.email %>">
                 </div>
             </div>
 
             <div class="form-group">
                 <label for="nickname" class="col-sm-2 control-label">用户名</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="nickname" placeholder="用户名">
+                    <input type="text" class="form-control" id="nickname" placeholder="用户名" value="<%= user.nickName %>">
                 </div>
             </div>
 
             <div class="form-group">
                 <label for="password" class="col-sm-2 control-label">密码</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="password" placeholder="密码">
+                    <input type="password" class="form-control" id="password" placeholder="密码" value="<%= user.password %>">
                 </div>
             </div>
 
             <div class="form-group">
                 <label for="phone" class="col-sm-2 control-label">电话</label>
                 <div class="col-sm-10">
-                    <input type="number" class="form-control" id="phone" placeholder="电话">
+                    <input type="number" class="form-control" id="phone" placeholder="电话" value="<%= user.phone %>">
                 </div>
             </div>
 
             <div class="form-group">
                 <label for="imgUrl" class="col-sm-2 control-label">头像</label>
                 <div class="col-sm-10">
-                    <input type="url" class="form-control" id="imgUrl" placeholder="头像链接">
+                    <input type="url" class="form-control" id="imgUrl" placeholder="头像链接" value="<%= user.imgUrl %>">
                 </div>
             </div>
 
             <div class="form-group">
                 <label for="address" class="col-sm-2 control-label">地址</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="address" placeholder="地址">
+                    <input type="text" class="form-control" id="address" placeholder="地址" value="<%= user.address %>">
                 </div>
             </div>
 
             <div class="form-group">
-                <label for="username" class="col-sm-2 control-label">性别</label>
+                <label for="gender" class="col-sm-2 control-label">性别</label>
                 <div class="col-sm-10">
                     <select name="gender" id="gender" title="">
                         <option value="0" selected>请选择</option>
@@ -63,7 +63,8 @@
 
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
-                    <button type="submit" class="btn btn-default">提交</button>
+                    <button type="submit" class="btn btn-success">提交</button>
+                    <a href="/users" class="btn btn-default">返回</a>
                 </div>
             </div>
         </form>
