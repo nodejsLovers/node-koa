@@ -3,9 +3,11 @@ var app = require('koa')()
     , logger = require('koa-logger')
     , json = require('koa-json')
     , views = require('koa-views')
-    , onerror = require('koa-onerror');
-var mongoose = require('./config/mongoose.js');
-var db = mongoose();
+    , onerror = require('koa-onerror')
+    , mongoose = require('./config/mongoose.js')
+    , db = mongoose();
+
+// routers
 var index = require('./routes/index');
 var users = require('./routes/users');
 

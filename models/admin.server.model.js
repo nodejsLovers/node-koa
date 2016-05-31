@@ -5,18 +5,16 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 //创建模型
-var UserSchema = new Schema({
-    email: String,
-    nickName: String,
+var AdminSchema = new Schema({
+    userName: String,
     password: String,
     salt: String,
     gender: Number,
-    phone: Number,
-    imgUrl: String,
-    address: String,
+    authLevel: Number,
+    operator: String,
     createTime: Date,
     lastLogin: Date
 });
 
 //注册并导出
-module.exports = mongoose.model('User', UserSchema);
+module.exports = mongoose.model('Admin', AdminSchema);
