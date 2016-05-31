@@ -7,12 +7,43 @@
 <body>
 <h1><%= title %></h1>
 <a href="/users/new" class="btn btn-success">添加用户</a>
-<ul id="users">
+<table id="users" class="table table-bordered table-hover">
+    <thead>
+    <tr>
+        <td>邮箱</td>
+        <td>昵称</td>
+        <td>密码</td>
+        <td>地址</td>
+        <td>电话</td>
+        <td>性别</td>
+        <td>图像</td>
+    </tr>
+    </thead>
     <% if (users.length) { %>
-        <% users.forEach(function(user){ %>
-        <li><%= user.username %></li>
-        <% }) %>
+    <tbody>
+    <% users.forEach(function(user){ %>
+    <tr>
+        <td><%= user.email %></td>
+        <td><%= user.nickName %></td>
+        <td><%= user.password %></td>
+        <td><%= user.address %></td>
+        <td><%= user.phone %></td>
+
+        <% if (user.gender ==0) { %>
+            <td>未知</td>
+        <% } %>
+        <% if (user.gender == 1) { %>
+            <td>男</td>
+        <% } %>
+        <% if (user.gender == 2) { %>
+            <td>女</td>
+        <% } %>
+
+        <td><img src="<%= user.imgUrl %>" alt="" style="width: 30px" height="30px"></td>
+    </tr>
+    <% }) %>
+    </tbody>
     <% } %>
-</ul>
+</table>
 </body>
 </html>
