@@ -6,6 +6,9 @@ router.get('/', list);
 router.get('/list', list);
 router.get('/new', add);
 router.post('/create', save);
+router.get('/edit/:id', edit);
+router.get('/update', update);
+router.get('/delete/:id', del);
 
 
 function *list(next) {
@@ -40,6 +43,25 @@ function *save(next) {
     var id = users.push(user)
     users.id = id - 1;
     this.redirect('/users');
+}
+
+
+function *edit(next) {
+    var id = this.params.id;
+    var user = yield User.findOne(id);
+    if (!user) this.throw(404, '没有找到这个用户');
+    yield this.render('/users/edit', {
+        title: '编辑用户',
+        user: user
+    })
+}
+
+function *update(next) {
+
+}
+
+function *del(next) {
+
 }
 
 
