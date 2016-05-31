@@ -5,6 +5,7 @@ var app = require('koa')()
     , views = require('koa-views')
     , onerror = require('koa-onerror')
     , mongoose = require('./config/mongoose.js')
+    , bodyParser = require('koa-bodyparser')
     , db = mongoose();
 
 // routers
@@ -16,7 +17,7 @@ app.use(views('views', {
     root: __dirname + '/views',
     default: 'ejs'
 }));
-app.use(require('koa-bodyparser')());
+app.use(bodyParser());
 app.use(json());
 app.use(logger());
 
