@@ -61,7 +61,13 @@ function *update(next) {
 }
 
 function *del(next) {
-
+    var id = this.params.id;
+    var user = yield User.findOne(id);
+    if (!user) this.throw(404, '没有找到这个用户');
+    var remove = user.remove();
+    if (remove) {
+        this.redirect('/users');
+    }
 }
 
 
