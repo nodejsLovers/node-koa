@@ -1,4 +1,4 @@
-var app = require('koa')()
+    var app = require('koa')()
     , router = require('koa-router')()
     , logger = require('koa-logger')
     , json = require('koa-json')
