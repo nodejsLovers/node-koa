@@ -1,19 +1,19 @@
 var router = require('koa-router')();
 var mongoose = require('mongoose');
 var User = mongoose.model('User');
-router.get('/', list);
 
+router.get('/', list);
 router.get('/list', list);
 router.get('/new', add);
-router.post('/create', save);
 router.get('/edit/:id', edit);
-router.get('/update', update);
 router.get('/delete/:id', del);
 
 
+router.post('/create', create);
+router.post('/save', save);
+
 function *list(next) {
     var result = yield User.find({});
-    console.log(result);
     yield this.render('/users/index', {
         title: '用户列表',
         users: result
@@ -25,7 +25,7 @@ function *add(next) {
         title: '添加用户',
         user: {
             email: '',
-            nickName: '',
+            nickname: '',
             password: '',
             gender: 0,
             phone: null,
@@ -35,13 +35,12 @@ function *add(next) {
     });
 }
 
-function *save(next) {
-    console.log(this.request.body);
-    var user = this.request.body;
-    user.createTime = new Date;
-    user.lastLogin = new Date;
-    var id = users.push(user);
-    users.id = id - 1;
+function *create(next) {
+    var data = this.request.body;
+    data.createTime = Date.now();
+    data.lastLogin = Date.now();
+    var user = new User(data);
+    yield user.save();
     this.redirect('/users');
 }
 
@@ -56,18 +55,26 @@ function *edit(next) {
     })
 }
 
-function *update(next) {
-
+function *save(next) {
+    var data = this.request.body;
+    var id = data._id;
+    data.lastLogin = Date.now();
+    var user = yield User.findOne(id);
+    if (!user) this.throw(404, '没有找到这个用户');
+    yield User.update({_id: id}, {
+        $set: data
+    });
+    this.redirect('/users');
 }
 
 function *del(next) {
     var id = this.params.id;
     var user = yield User.findOne(id);
     if (!user) this.throw(404, '没有找到这个用户');
-    var remove = user.remove();
-    if (remove) {
-        this.redirect('/users');
-    }
+    yield User.remove({
+        _id: id
+    });
+    this.redirect('/users');
 }
 
 

@@ -7,46 +7,49 @@
 <div class="panel panel-default">
     <div class="panel-heading"><h1><%= title %></h1></div>
     <div class="panel-body">
-        <form class="form-horizontal" action="/users/update" method="post">
+        <form class="form-horizontal" action="/users/save" method="post">
+            <input type="hidden" title="" name="_id" id="_id" value="<%= user._id %>">
             <div class="form-group">
                 <label for="email" class="col-sm-2 control-label">邮箱</label>
                 <div class="col-sm-10">
-                    <input type="email" class="form-control" id="email" placeholder="邮箱" value="<%= user.email %>">
+                    <input type="email" class="form-control" id="email" name="email" placeholder="邮箱" value="<%= user.email %>">
                 </div>
             </div>
 
             <div class="form-group">
                 <label for="nickname" class="col-sm-2 control-label">用户名</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="nickname" placeholder="用户名" value="<%= user.nickName %>">
+                    <input type="text" class="form-control" id="nickname" name="nickname" placeholder="用户名"
+                           value="<%= user.nickname %>">
                 </div>
             </div>
 
             <div class="form-group">
                 <label for="password" class="col-sm-2 control-label">密码</label>
                 <div class="col-sm-10">
-                    <input type="password" class="form-control" id="password" placeholder="密码" value="<%= user.password %>">
+                    <input type="password" class="form-control" id="password" name="password" placeholder="密码"
+                           value="<%= user.password %>">
                 </div>
             </div>
 
             <div class="form-group">
                 <label for="phone" class="col-sm-2 control-label">电话</label>
                 <div class="col-sm-10">
-                    <input type="number" class="form-control" id="phone" placeholder="电话" value="<%= user.phone %>">
+                    <input type="number" class="form-control" id="phone" placeholder="电话" name="phone" value="<%= user.phone %>">
                 </div>
             </div>
 
             <div class="form-group">
                 <label for="imgUrl" class="col-sm-2 control-label">头像</label>
                 <div class="col-sm-10">
-                    <input type="url" class="form-control" id="imgUrl" placeholder="头像链接" value="<%= user.imgUrl %>">
+                    <input type="url" class="form-control" id="imgUrl" placeholder="头像链接" name="imgUrl" value="<%= user.imgUrl %>">
                 </div>
             </div>
 
             <div class="form-group">
                 <label for="address" class="col-sm-2 control-label">地址</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="address" placeholder="地址" value="<%= user.address %>">
+                    <input type="text" class="form-control" id="address" placeholder="地址" name="address" value="<%= user.address %>">
                 </div>
             </div>
 
