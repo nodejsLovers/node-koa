@@ -28,7 +28,7 @@ function *add(next) {
             nickName: '',
             password: '',
             gender: 0,
-            phone: 1,
+            phone: null,
             imgUrl: '',
             address: ''
         }
@@ -40,7 +40,7 @@ function *save(next) {
     var user = this.request.body;
     user.createTime = new Date;
     user.lastLogin = new Date;
-    var id = users.push(user)
+    var id = users.push(user);
     users.id = id - 1;
     this.redirect('/users');
 }

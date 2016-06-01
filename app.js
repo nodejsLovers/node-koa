@@ -1,5 +1,5 @@
 var app = require('koa')()
-    , koa = require('koa-router')()
+    , router = require('koa-router')()
     , logger = require('koa-logger')
     , json = require('koa-json')
     , views = require('koa-views')
@@ -33,11 +33,11 @@ app.use(function *(next) {
 app.use(require('koa-static')(__dirname + '/public'));
 
 // routes definition
-koa.use('/', index.routes(), index.allowedMethods());
-koa.use('/users', users.routes(), users.allowedMethods());
+router.use('/', index.routes(), index.allowedMethods());
+router.use('/users', users.routes(), users.allowedMethods());
 
 // mount root routes  
-app.use(koa.routes());
+app.use(router.routes());
 
 app.on('error', function (err, ctx) {
     logger.error('server error', err, ctx);
