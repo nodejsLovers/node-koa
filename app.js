@@ -6,6 +6,7 @@ var app = require('koa')()
     , onerror = require('koa-onerror')
     , mongoose = require('./config/mongoose.js')
     , bodyParser = require('koa-bodyparser')
+    , hotreload = require('./dev/hotreload')
     , db = mongoose();
 
 // routers
@@ -20,6 +21,7 @@ app.use(views('views', {
 app.use(bodyParser());
 app.use(json());
 app.use(logger());
+app.use(hotreload);
 
 app.use(function *(next) {
     var start = new Date;

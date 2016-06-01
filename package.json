@@ -3,23 +3,23 @@
   "version": "0.1.2",
   "private": true,
   "scripts": {
-    "查看":"-------------------------",
+    "查看": "-------------------------",
     "branch": "git branch -a",
     "tag": "git tag",
-    "标签":"-------------------------",
+    "标签": "-------------------------",
     "createtag": "git tag -a 0.1.2 -m Release^-^",
     "pushtag": "npm run createtag && git push origin --tags",
     "delbranch": "git push origin --delete",
-    "推送":"-------------------------",
-    "fetch":"git fetch -p",
-    "push":"git push origin master",
-    "commit":"git commit -a ",
-    "checkout":"git checkout",
-    "删除":"-------------------------",
+    "推送": "-------------------------",
+    "fetch": "git fetch -p",
+    "push": "git push origin master",
+    "commit": "git commit -a ",
+    "checkout": "git checkout",
+    "删除": "-------------------------",
     "deltag": "git push origin --delete tag",
     "delbranck": "git branch -d",
     "delbranchall": "git branch -D",
-    "重命名":" param1 原 param2 新----",
+    "重命名": " param1 原 param2 新----",
     "renamebranch": "git branch -m",
     "start": "node ./bin/www"
   },
@@ -38,5 +38,10 @@
     "koa-views": "^3.1.0",
     "mongoose": "^4.4.19",
     "uuid": "^2.0.2"
+  },
+  "devDependencies": {
+    "koa-webpack-dev-middleware": "^1.2.1",
+    "webpack": "^1.13.1",
+    "webpack-dev-server": "^1.14.1"
   }
 }
