@@ -8,7 +8,7 @@ status: publish
 summary: 最近在学习node，所以听说node和mongodb更配哦。。所以我就来学习mongodb了
 -->
 
-##一、mongodb的开启和关闭##
+## 一、mongodb的开启和关闭
 
 1. 查找mongod是否可用  
 `which mongod`
@@ -20,7 +20,7 @@ summary: 最近在学习node，所以听说node和mongodb更配哦。。所以�
 `mongod --shutdown`
 
 
-## 二、mongodb的操作 ##  
+## 二、mongodb的操作  
 
 1. 连接服务器  
 `mongod 115.29.137.34:27017`  
@@ -254,3 +254,7 @@ Comment.pre('save', function (next) {
 
 
 ```
+
+## 最后给一个mongoose增删改查的文章
+
+[mongoose - 让node.js高效操作mongodb](http://www.cnblogs.com/aaronjs/p/4489354.html)
