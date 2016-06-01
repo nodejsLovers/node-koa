@@ -7,7 +7,7 @@ var Schema = mongoose.Schema;
 //创建模型
 var UserSchema = new Schema({
     email: String,
-    nickName: String,
+    nickname: String,
     password: String,
     salt: String,
     gender: Number,
