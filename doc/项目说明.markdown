@@ -1,0 +1,47 @@
+# 一、为什么会有这个项目
+我目前的博客是使用gitblog的开源项目搭建 地址: [小莫的博客](http://blog.xiaomo.info)，但是作为一个开发者如果连自己的博客都还要使用别人开源的东西，那这是不是有点太说不过去了。
+所以一直致力于个人博客系统的搭建,曾经用spring boot写了一个前后分离的接口项目[xiaomoBlogJava](https://github.com/hupengbest/xiaomoBlogJava),纯粹提供api的数据。现在打算用
+node来重构,做前后分离的项目,node依旧只提供接口数据。项目目录请看[目录结构说明](./../目录结构说明.txt)。
+
+# 二、项目具备哪些功能   
+
+## 1、后台(具体可参考 [java写的后台](http://xiaomo.info/admin/#main))    
+ 数据条件检索(search) 批量操作(checkbox)  `login`:登陆(login)、注销(logout)     
+
+# 以下是实体模型    
+#### `admin`:管理员  权限控制(auth)  操作数据(增删改查)(CRUD) 要有对应的操作记录(log)    
+#### `user`: 用户 操作数据(增删改查)(CRUD) 禁止登录 解禁     
+#### `blog`: 博客 操作数据(增删改查)(CRUD)     
+#### `changeLog`: 更新日志 操作数据(增删改查)(CRUD)     
+#### `goodBlog`: 优秀博客站点[可以是自己的站点,也可以是github或者其他] 操作数据(增删改查)(CRUD)     
+#### `category`: 分类 操作数据(增删改查)(CRUD)     
+#### `goodPlugin`: 优秀的插件[包括好的npm包或者网上好的各种] 操作数据(增删改查)(CRUD)     
+#### `link`: 友情链接 操作数据(增删改查)(CRUD)     
+  
+  这个可以读取配置文件   
+ 站点设置:`webSet` 查看和修改 (包括站点根目录(baseUrl)、标题(title)、favicon(favicon)、版本开始(yearStart)、版权结束(yearEnd)、备案地址(beian)、备案链接(beianUrl)     
+ 
+
+
+## 2、前台  
+
+# 以下是实体模型
+#### `user`: 用户 =>登录 注册 修改密码 更新资料         
+#### `blog`: 博客 => 博客列表 博客详情 发布博客 修改博客 删除博客 点赞 评论 分享      
+#### `changeLog`: 更新日志 日志列表     
+#### `goodBlog`: 优秀博客站点[可以是自己的站点,也可以是github或者其他] 站点列表        
+#### `category`: 分类 根据分类查找对应分离的列表     
+#### `goodPlugin`: 优秀的插件[包括好的npm包或者网上好的各种] 插件列表     
+#### `link`: 友情链接 友链列表  
+
+ 
+ 
+# 每个实体模型对应的字段
+
+* [admin](./实体类/admin.md)   
+* [category](./实体类/category.md)   
+* [changeLog](./实体类/changeLog.md)   
+* [goodBlog](./实体类/goodBlog.md)   
+* [goodPlugin](./实体类/goodPlugin.md)   
+* [link](./实体类/link.md)   
+* [user](./实体类/user.md)   
