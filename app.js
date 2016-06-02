@@ -1,5 +1,5 @@
-    require('./config/mongoose.js');
-    var app = require('koa')()
+require('./config/mongoose.js');
+var app = require('koa')()
     , router = require('koa-router')()
     , logger = require('koa-logger')
     , json = require('koa-json')
