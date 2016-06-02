@@ -1,0 +1,6 @@
+### 一、为什么会有这个项目
+我目前的博客是使用gitblog的开源项目搭建 地址: [小莫的博客](http://blog.xiaomo.info)，但是作为一个开发者如果连自己的博客都还要使用别人开源的东西，那这是不是有点太说不过去了。
+所以一直致力于个人博客系统的搭建,曾经用spring boot写了一个前后分离的接口项目[xiaomoBlogJava](https://github.com/hupengbest/xiaomoBlogJava),纯粹提供api的数据。现在打算用
+node来重构,做前后分离的项目,node依旧只提供接口数据。
+
+### 

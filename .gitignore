@@ -74,3 +74,4 @@ test/images/originalSideways.jpg.2
 # Traceur output #
 ##################
 out/*
+.gitignore
