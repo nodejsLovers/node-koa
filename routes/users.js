@@ -13,11 +13,15 @@ router.post('/create', create);
 router.post('/save', save);
 
 function *list(next) {
+    try{
     var result = yield User.find({});
     yield this.render('/users/index', {
         title: '用户列表',
         users: result
     })
+    } catch (e){
+        console.log(e)
+    }
 }
 
 function *add(next) {

@@ -1,4 +1,4 @@
-    var app = require('koa')()
+var app = require('koa')()
     , router = require('koa-router')()
     , logger = require('koa-logger')
     , json = require('koa-json')
@@ -7,7 +7,9 @@
     , mongoose = require('./config/mongoose.js')
     , bodyParser = require('koa-bodyparser')
     , hotreload = require('./dev/hotreload')
-    , db = mongoose();
+    , db = mongoose()
+    , moment = require('moment');
+
 
 // routers
 var index = require('./routes/index');
@@ -23,12 +25,7 @@ app.use(json());
 app.use(logger());
 app.use(hotreload);
 
-app.use(function *(next) {
-    var start = new Date;
-    yield next;
-    var ms = new Date - start;
-    console.log('%s %s - %s', this.method, this.url, ms);
-});
+global.moment = moment;
 
 app.use(require('koa-static')(__dirname + '/public'));
 

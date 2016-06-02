@@ -16,6 +16,8 @@
         <td align="center">电话</td>
         <td align="center">性别</td>
         <td align="center">图像</td>
+        <td align="center">创建时间</td>
+        <td align="center">上次登录</td>
         <td colspan="2" align="center">操作</td>
     </tr>
     </thead>
@@ -37,8 +39,9 @@
         <% if (user.gender == 2) { %>
             <td align="center">女</td>
         <% } %>
-
         <td align="center"><img src="<%= user.imgUrl %>" alt="" style="width: 30px" height="30px"></td>
+        <td align="center"><%= moment(user.createTime).format('YYYY-MM-DD HH:mm:ss') %></td>
+        <td align="center"><%= moment(user.lastLogin).format('YYYY-MM-DD  HH:mm:ss') %></td>
         <td align="center"><a href="/users/edit/<%= user._id %>" class="btn btn-info">修改</a></td>
         <td align="center"><a href="/users/delete/<%= user._id %>" class="btn btn-danger">删除</a></td>
     </tr>
