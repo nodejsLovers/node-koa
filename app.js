@@ -23,8 +23,9 @@ app.use(views('views', {
 app.use(bodyParser());
 app.use(json());
 app.use(logger());
-app.use(hotreload);
 
+app.use(hotreload);
+onerror(app);
 global.moment = moment;
 
 app.use(require('koa-static')(__dirname + '/public'));
