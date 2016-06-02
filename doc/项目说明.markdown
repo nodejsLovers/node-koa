@@ -6,7 +6,7 @@ node来重构,做前后分离的项目,node依旧只提供接口数据。项目�
 # 二、项目具备哪些功能   
 
 ## 1、后台(具体可参考 [java写的后台](http://xiaomo.info/admin/#main))    
- 数据条件检索(search) 批量操作(checkbox)  `login`:登陆(login)、注销(logout)     
+ 数据条件检索(search) 批量操作(checkbox)  `login`:登陆(login)、注销(logout) 三方登录（QQ、github）      
 
 # 以下是实体模型    
 #### `admin`:管理员  权限控制(auth)  操作数据(增删改查)(CRUD) 要有对应的操作记录(log)    
