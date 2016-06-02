@@ -1,10 +1,10 @@
-var app = require('koa')()
+    require('./config/mongoose.js');
+    var app = require('koa')()
     , router = require('koa-router')()
     , logger = require('koa-logger')
     , json = require('koa-json')
     , views = require('koa-views')
     , onerror = require('koa-onerror')
-    , mongoose = require('./config/mongoose.js')
     , bodyParser = require('koa-bodyparser')
     , hotreload = require('./dev/hotreload')
     , moment = require('moment');
