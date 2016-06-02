@@ -9,6 +9,8 @@ var app = require('koa')()
     , hotreload = require('./dev/hotreload')
     , moment = require('moment');
 
+//db
+mongoose();
 
 // routers
 var index = require('./routes/index');
