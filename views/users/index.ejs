@@ -40,8 +40,8 @@
             <td align="center">女</td>
         <% } %>
         <td align="center"><img src="<%= user.imgUrl %>" alt="" style="width: 30px" height="30px"></td>
-        <td align="center"><%= moment(user.createTime).format('YYYY-MM-DD HH:mm:ss') %></td>
-        <td align="center"><%= moment(user.lastLogin).format('YYYY-MM-DD  HH:mm:ss') %></td>
+        <td align="center"><%= user.createTime %></td>
+        <td align="center"><%= user.lastLogin %></td>
         <td align="center"><a href="/users/edit/<%= user._id %>" class="btn btn-info">修改</a></td>
         <td align="center"><a href="/users/delete/<%= user._id %>" class="btn btn-danger">删除</a></td>
     </tr>
