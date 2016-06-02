@@ -1,6 +1,5 @@
 var router = require('koa-router')();
-var mongoose = require('mongoose');
-var User = mongoose.model('User');
+var User = require('../config/mongoose').User;
 var moment = require('moment');
 
 router.get('/', list);

@@ -4,8 +4,17 @@
 var mongoose = require('mongoose');
 var config = require('./config.js');
 
-module.exports=function () {
-    var db = mongoose.connect(config.mongodb);
-    require('./../models/users.server.model.js');
-    return db;
-}
+mongoose.connect(
+    config.mongodb,
+    {server: {poolSize: 20}},
+    function (err) {
+      if (err) {
+        console.error('connect to %s error: ', config.mongodb, err.message);
+        process.exit(1);
+      }
+    }
+);
+
+require('../models/users.server.model');
+
+exports.User = mongoose.model('User');

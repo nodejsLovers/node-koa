@@ -25,7 +25,6 @@ app.use(logger());
 
 app.use(hotreload);
 onerror(app);
-mongoose();
 global.moment = moment;
 
 app.use(require('koa-static')(__dirname + '/public'));
