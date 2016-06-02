@@ -7,7 +7,6 @@ var app = require('koa')()
     , mongoose = require('./config/mongoose.js')
     , bodyParser = require('koa-bodyparser')
     , hotreload = require('./dev/hotreload')
-    , db = mongoose()
     , moment = require('moment');
 
 
@@ -26,6 +25,7 @@ app.use(logger());
 
 app.use(hotreload);
 onerror(app);
+mongoose();
 global.moment = moment;
 
 app.use(require('koa-static')(__dirname + '/public'));
