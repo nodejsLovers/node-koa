@@ -14,12 +14,8 @@
     "webpack-dev-server": "webpack-dev-server",
     "webdriver-manager": "webdriver-manager",
     "protractor": "protractor",
+    "以上脚本只是为了下面的服务": "并不能直接运行",
     "clean": "npm cache clean && npm run rimraf -- node_modules doc typings coverage dist",
-    "clean:dist": "npm run rimraf -- dist",
-    "preclean:install": "npm run clean",
-    "clean:install": "npm set progress=false && npm install",
-    "preclean:start": "npm run clean",
-    "clean:start": "npm start",
     "watch": "npm run watch:dev",
     "watch:dev": "npm run build:dev -- --watch",
     "watch:dev:hmr": "npm run watch:dev -- --hot",
@@ -48,8 +44,18 @@
     "start:hmr": "npm run server:dev:hmr",
     "postinstall": "npm run typings -- install",
     "preversion": "npm test",
-    "version": "npm run build",
     "postversion": "git push && git push --tags"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nodejs-study/node-koa/tree/master/web/admin"
+  },
+  "bugs": {
+    "url": "https://github.com/nodejs-study/node-koa/tree/master/web/admin"
+  },
+  "engines": {
+    "node": ">= 4.2.1",
+    "npm": ">= 3"
   },
   "dependencies": {
     "@angular/http": "2.0.0-rc.1",
@@ -115,16 +121,5 @@
     "webpack-dev-server": "^1.14.1",
     "webpack-md5-hash": "^0.0.5",
     "webpack-merge": "^0.12.0"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/nodejs-study/node-koa/tree/master/web/admin"
-  },
-  "bugs": {
-    "url": "https://github.com/nodejs-study/node-koa/tree/master/web/admin"
-  },
-  "engines": {
-    "node": ">= 4.2.1",
-    "npm": ">= 3"
   }
 }
