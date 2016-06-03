@@ -17,7 +17,7 @@ const ForkCheckerPlugin = require('awesome-typescript-loader').ForkCheckerPlugin
  * Webpack Constants
  */
 const METADATA = {
-  title: 'Angular2 Webpack Starter by @gdi2290 from @xiaomo',
+  title: 'Angular2 Webpack project by @xiaomo',
   baseUrl: '/'
 };
 
