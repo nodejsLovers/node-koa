@@ -16,20 +16,16 @@ require('babel-core/register')({
     presets: ['es2015-node5', 'stage-3']
 });
 
+app.use(views('views', {
+    root: __dirname + '/views',
+    default: 'ejs'
+}));
+
 // middlewares
 app.use(convert(bodyparser));
 app.use(convert(json()));
 app.use(convert(logger()));
 app.use(require('koa-static')(__dirname + '/public'));
-
-
-// logger
-// app.use(async(ctx, next) => {
-//     const start = new Date();
-//     await next();
-//     const ms = new Date() - start;
-//     console.log(`${ctx.method} ${ctx.url} - ${ms}ms`);
-// });
 
 router.use('/', index.routes(), index.allowedMethods());
 router.use('/users', users.routes(), users.allowedMethods());
