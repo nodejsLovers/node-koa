@@ -1,42 +1,46 @@
-require('./config/mongoose.js');
-var app = require('koa')()
-    , router = require('koa-router')()
-    , logger = require('koa-logger')
-    , json = require('koa-json')
-    , views = require('koa-views')
-    , onerror = require('koa-onerror')
-    , bodyParser = require('koa-bodyparser')
-    , hotreload = require('./dev/hotreload')
-    , moment = require('moment');
+const Koa = require('koa');
+const app = new Koa();
+const router = require('koa-router')();
+const co = require('co');
+const convert = require('koa-convert');
+const json = require('koa-json');
+const onerror = require('koa-onerror');
+const bodyparser = require('koa-bodyparser')();
+const logger = require('koa-logger');
 
-// routers
-var index = require('./routes/index');
-var users = require('./routes/users');
+const index = require('./routes/index');
+const users = require('./routes/users');
 
-// global middlewares
-app.use(views('views', {
-    root: __dirname + '/views',
-    default: 'ejs'
-}));
-app.use(bodyParser());
-app.use(json());
-app.use(logger());
+//set babel transform
+require('babel-core/register')({
+    presets: ['es2015-node5', 'stage-3']
+});
 
-app.use(hotreload);
-onerror(app);
-global.moment = moment;
-
+// middlewares
+app.use(convert(bodyparser));
+app.use(convert(json()));
+app.use(convert(logger()));
 app.use(require('koa-static')(__dirname + '/public'));
 
-// routes definition
+
+// logger
+// app.use(async(ctx, next) => {
+//     const start = new Date();
+//     await next();
+//     const ms = new Date() - start;
+//     console.log(`${ctx.method} ${ctx.url} - ${ms}ms`);
+// });
+
 router.use('/', index.routes(), index.allowedMethods());
 router.use('/users', users.routes(), users.allowedMethods());
 
-// mount root routes  
-app.use(router.routes());
+app.use(router.routes(), router.allowedMethods());
+// response
 
 app.on('error', function (err, ctx) {
+    console.log(err);
     logger.error('server error', err, ctx);
 });
+
 
 module.exports = app;
