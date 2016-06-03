@@ -22,6 +22,8 @@ src/*.js
 src/*.map
 src/platform/*.js
 src/platform/*.map
+src/platform/*/*.js
+src/platform/*/*.map
 # Grunt intermediate storage (http://gruntjs.com/creating-plugins#storing-task-files)
 .grunt
 
