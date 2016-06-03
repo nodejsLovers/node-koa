@@ -14,6 +14,6 @@ mongoose.connect(
     }
 );
 
-require('../models/users.server.model');
+require('../models/users.model.js');
 
 exports.User = mongoose.model('User');

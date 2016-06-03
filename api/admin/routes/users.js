@@ -4,14 +4,14 @@ var moment = require('moment');
 
 router.get('/', list);
 router.get('/list', list);
-router.get('/new', add);
+router.get('/add', add);
 router.get('/edit/:id', edit);
 router.get('/delete/:id', del);
 
 router.post('/create', create);
 router.post('/save', save);
 
-async function list(ctx, next) {
+async function list(ctx) {
     var result = await User.find({});
     for (var i = 0; i < result.length; i++) {
         result[i]._doc.createTime = moment(result[i].createTime).format("YYYY-MM-DD HH:mm:ss");
@@ -23,21 +23,6 @@ async function list(ctx, next) {
 }
 
 async function add(ctx, next) {
-    await ctx.render('/users/new', {
-        title: '添加用户',
-        user: {
-            email: '',
-            nickname: '',
-            password: '',
-            gender: 0,
-            phone: null,
-            imgUrl: '',
-            address: ''
-        }
-    });
-}
-
-async function create(ctx, next) {
     var data = ctx.body;
     data.createTime = Date.now();
     data.lastLogin = Date.now();

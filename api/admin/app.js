@@ -23,12 +23,6 @@ app.use(convert(json()));
 app.use(convert(logger()));
 app.use(require('koa-static')(__dirname + '/public'));
 
-app.use(convert(views(__dirname, {
-    map: {
-        html: 'ejs'
-    }
-})));
-
 router.use('/', index.routes(), index.allowedMethods());
 router.use('/users', users.routes(), users.allowedMethods());
 

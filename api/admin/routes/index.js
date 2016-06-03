@@ -1,8 +1,6 @@
 var router = require('koa-router')();
 
-router.get('/', async function (ctx, next) {
-    ctx.body = {
-        title: 'koa2 title'
-    };
+router.get('/', async function (ctx) {
+    ctx.body = '后台api接口项目启动成功！！'
 });
 module.exports = router;
