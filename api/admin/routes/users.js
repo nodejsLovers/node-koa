@@ -8,7 +8,6 @@ router.get('/add', add);
 router.get('/edit/:id', edit);
 router.get('/delete/:id', del);
 
-router.post('/create', create);
 router.post('/save', save);
 
 async function list(ctx) {
