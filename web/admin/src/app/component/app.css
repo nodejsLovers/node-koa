@@ -1,0 +1,65 @@
+body,html{
+  margin: 0;
+  padding: 0;
+  background-color: #333;
+  color: #eee;
+  height: 100%;
+}
+article{
+       display: flex;
+        align-items: center;
+        justify-content: center;
+
+}
+
+.bar{
+  border-bottom: 1px solid #eee;
+  padding:0.5em 0 0.5em 2em;
+  position: fixed;
+  width: 100%;
+  z-index: 1000;
+}
+.login{
+  position: fixed;
+  right: 2em;
+  top: 2em;
+}
+a{
+  color: #eee;
+}
+button{
+  position: fixed;
+  right: 2em;
+  top: 5em;
+  background: none;
+  border: 0;
+  color: #eee;
+  outline-style:none;
+}
+.all{
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+}
+.menuBar{
+  position: fixed;
+  background-color: #252525;
+  top: 5.5em;
+  left: 0;
+  height: 90.9%;
+  z-index: 110;
+}
+.menuBut{
+  position: fixed;
+  bottom:1em;
+  left: 1em;
+  font-size: 3em;
+  z-index: 100;
+}
+menu{
+  padding: 0;
+  position: relative;
+}

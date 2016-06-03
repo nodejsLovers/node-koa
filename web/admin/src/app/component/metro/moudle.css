@@ -1,0 +1,62 @@
+.smallBox {
+    display: inline-block;
+    width: 310px;
+    height: 150px;
+line-height: 150px;
+    /*padding: 40px 0;*/
+    text-align: center;
+    margin: 5px;
+    position: relative;
+    box-shadow: 0 1px 50px 1px #111;
+}
+.small {
+    width: 150px;
+    height: 150px;
+}
+.smallBox:hover{
+-webkit-animation: title1 4s infinite linear;
+top: -2px
+}
+
+@-webkit-keyframes title1 {
+ 0% {
+   box-shadow: 0 1px 10px 3px #111;
+ }
+
+ 50% {
+   box-shadow: 0 1px 3px 3px #fff;
+ }
+
+ 100% {
+   box-shadow: 0 1px 10px 3px #111;
+ }
+}
+.box {
+    padding: 10px;
+    height: auto;
+}
+
+.type1 .smallBox{
+    background-color: #006ac1;
+}
+.type2 .smallBox{
+    background-color: #78ba00;
+}
+.type3 .smallBox{
+    background-color: #7200ac;
+}
+.type4 .smallBox{
+    background-color: #D39d09;
+}
+.type5 .smallBox{
+    background-color: #c1004f;
+}
+.type6 .smallBox{
+    background-color: #78ba00;
+}
+.type7 .smallBox{
+    background-color: #006ac1;
+}
+.type8 .smallBox{
+    background-color: #c1004f;
+}

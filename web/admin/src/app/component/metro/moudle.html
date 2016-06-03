@@ -1,0 +1,26 @@
+<div class="box type{{random}}">
+<div class="line">
+  <div class="smallBox {{menu.type}} " *ngFor="let menu of menus | typography:'first'">
+  {{menu.name}}
+
+  </div>
+</div>
+<div class="line">
+<div class="smallBox {{menu.type}}" *ngFor="let menu of menus | typography:'second'">
+{{menu.name}}
+</div>
+  </div>
+<div class="line">
+<div class="smallBox {{menu.type}}" *ngFor="let menu of menus | typography:'third'">
+{{menu.name}}
+</div>
+<div class="line">
+<div class="smallBox {{menu.type}}" *ngFor="let menu of menus | typography:'four'">
+{{menu.name}}
+</div>
+<div class="line">
+<div class="smallBox {{menu.type}}" *ngFor="let menu of menus | typography:'five'">
+{{menu.name}}
+</div>
+</div>
+</div>

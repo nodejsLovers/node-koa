@@ -1,0 +1,15 @@
+
+<div [ngStyle]="{'width': (menuNum+1)*140+'px'}">
+<span class="menuList">
+<div class="box" *ngFor="let smallGird of smallGirdLists" (click)="showNextMenu(smallGird.menu,1)">
+  <i class="icon iconfont menuListIcon">&#xe6ac;</i>
+  {{smallGird.name}}
+</div>
+</span>
+<span class="menuList" *ngFor="let menus of menuArray let i = index">
+<div class="box" *ngFor="let smallGird of menus" (click)="showNextMenu(smallGird.menu,i+2)">
+  <i class="icon iconfont menuListIcon">&#xe6ac;</i>
+ {{smallGird.name}}
+</div>
+</span>
+</div>
