@@ -29,7 +29,6 @@ function hasProcessFlag(flag) {
  */
 function root(args) {
     args = Array.prototype.slice.call(arguments, 0);
-    console.log(path.join.apply(path, [ROOT].concat(args)));
     return path.join.apply(path, [ROOT].concat(args));
 }
 
