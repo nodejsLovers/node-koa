@@ -80,7 +80,7 @@ module.exports = {
         new webpack.HotModuleReplacementPlugin(),
         new extraTextWebpackPlugin(
             '[hash].bundle.css'
-        ),
+        )
     ],
     postcss: [autoprefixer({
         browsers: ['last 2 version']
