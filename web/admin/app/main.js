@@ -7,5 +7,5 @@ import { AppComponent } from './components/app/app.component';
 bootstrap(AppComponent, [
   TodoStoreService,
   ROUTER_PROVIDERS,
-  { provide: 'author', useValue: 'xiaomo' }
+  { provide: 'AUTHOR', useValue: 'xiaomo' }
 ]);
