@@ -5,7 +5,8 @@
   "scripts": {
     "clean": "rimraf dist",
     "build": "npm run clean && webpack --progress --colors --profile",
-    "start": "webpack-dev-server --progress --colors --profile"
+    "go": "webpack-dev-server --progress --colors --profile",
+    "start": "npm run build && npm run go"
   },
   "repository": {
     "type": "git",
