@@ -1,19 +1,22 @@
-/**
- * @author: @AngularClass
- */
+'use strict';
 
-// Look in ./config folder for webpack.dev.js
-switch (process.env.NODE_ENV) {
-  case 'prod':
-  case 'production':
-    module.exports = require('./config/webpack.prod');
-    break;
-  case 'test':
-  case 'testing':
-    module.exports = require('./config/webpack.test');
-    break;
-  case 'dev':
-  case 'development':
-  default:
-    module.exports = require('./config/webpack.dev');
-}
+module.exports = {
+  module: {
+    loaders: [
+      {
+        test: /\.js$/,
+        loader: 'babel',
+        exclude: /node_modules/,
+        query: {
+          presets: ['es2015', 'angular2']
+        }
+      },
+      {
+        test: /\.html$/,
+        loader: 'raw'
+      }
+    ]
+  },
+
+  devtool: 'source-map'
+};
