@@ -175,6 +175,9 @@ module.exports = {
         test: /\.html$/,
         loader: 'raw-loader',
         exclude: [helpers.root('src/index.html')]
+      }, {
+        test: /\.(png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot|@)$/,
+        loaders: ['file-loader?limit=81920']
       }
 
     ]
