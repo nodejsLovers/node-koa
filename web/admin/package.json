@@ -1,5 +1,5 @@
 {
-  "name": "angular2-esnext-todomvc",
+  "name": "node-koa",
   "version": "1.0.0",
   "main": "app/main.js",
   "scripts": {
@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/blacksonic/angular2-esnext-todomvc.git"
+    "url": "git+https://github.com/nodejs-study/node-koa.git"
   },
   "author": {
     "name": "xiaomo",
