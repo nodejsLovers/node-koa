@@ -1,6 +1,6 @@
 {
   "name": "angular2-esnext-todomvc",
-  "version": "3.0.0",
+  "version": "1.0.0",
   "main": "app/main.js",
   "scripts": {
     "clean": "rimraf dist",
