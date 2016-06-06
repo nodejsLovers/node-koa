@@ -6,7 +6,7 @@
 bash
 
 npm install
-npm run bundle
+npm run build
 npm start
 
 ```
