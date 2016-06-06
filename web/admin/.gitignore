@@ -49,6 +49,7 @@ npm-debug.log
 /src/*/__build__/
 /__build__/**
 /public/dist/
+/app/dist/
 /src/*/dist/
 /dist/**
 .webpack.json
