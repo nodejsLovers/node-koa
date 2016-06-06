@@ -21,9 +21,6 @@ Layout and namings based on the [official Angular 2 style guide](https://angular
 
 ```bash
 
-git clone https://github.com/blacksonic/angular2-esnext-todomvc.git
-cd angular2-esnext-todomvc
-
 npm install
 npm run bundle
 npm start
