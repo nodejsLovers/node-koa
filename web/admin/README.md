@@ -11,4 +11,4 @@ npm start
 
 ```
 
-Open it in your browser [http://localhost:9000](http://localhost:9000).
+Open it in your browser [http://localhost:8080](http://localhost:8080).
