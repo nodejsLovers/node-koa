@@ -1,22 +1,8 @@
-'use strict';
-
-module.exports = {
-  module: {
-    loaders: [
-      {
-        test: /\.js$/,
-        loader: 'babel',
-        exclude: /node_modules/,
-        query: {
-          presets: ['es2015', 'angular2']
-        }
-      },
-      {
-        test: /\.html$/,
-        loader: 'raw'
-      }
-    ]
-  },
-
-  devtool: 'source-map'
-};
+// process.env.NODE_ENV = 'production';
+if (process.env.NODE_ENV === 'production') {
+  console.info('当前系统环境是' + process.env.NODE_ENV);
+  module.exports = require('./config/webpack.prod.js');
+} else {
+  console.info('当前系统环境是[测试环境]');
+  module.exports = require('./config/webpack.dev.js');
+}
