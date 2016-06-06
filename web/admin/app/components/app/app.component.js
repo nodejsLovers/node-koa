@@ -3,7 +3,7 @@ import {Routes, ROUTER_DIRECTIVES} from "@angular/router";
 import {TodoComponent} from "../todo-list/todo-list.component";
 
 @Component({
-    selector: 'todo-app',
+    selector: 'app',
     directives: [ROUTER_DIRECTIVES],
     template: require('./app.template.html')
 })
