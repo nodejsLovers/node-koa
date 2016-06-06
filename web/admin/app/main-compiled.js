@@ -4,6 +4,6 @@ import { ROUTER_PROVIDERS } from '@angular/router';
 import { TodoStoreService } from './services/todo-store.service';
 import { AppComponent } from './components/app/app.component';
 
-bootstrap(AppComponent, [TodoStoreService, ROUTER_PROVIDERS, { provide: 'AUTHOR', useValue: 'Soós Gábor' }]);
+bootstrap(AppComponent, [TodoStoreService, ROUTER_PROVIDERS, { provide: 'author', useValue: 'xiaomo' }]);
 
 //# sourceMappingURL=main-compiled.js.map

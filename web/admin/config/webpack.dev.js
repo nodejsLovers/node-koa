@@ -68,12 +68,12 @@ module.exports = {
     },
     plugins: [
         new htmlWebpackPlugin({
-            template: './app/public/index.html',
+            template: './public/index.html',
             inject: 'body'
         }),
         new copyWebpackPlugin([
             {
-                from: __dirname + './../app/public'
+                from: __dirname + './../public'
             }
         ]),
         new webpack.optimize.CommonsChunkPlugin('[hash].common.js'),
