@@ -23,7 +23,7 @@
   ],
   "description": "Angular 2 application in Javascript (ES6/ES7).",
   "engines": {
-    "node": "4.4.0"
+    "node": "4.4.5"
   },
   "dependencies": {
     "@angular/common": "2.0.0-rc.1",
