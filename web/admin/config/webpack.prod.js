@@ -8,7 +8,7 @@
  * @github: https://github.com/qq83387856
  * @email: hupengbest@163.com
  * @QQ_NO: 83387856
- * @Date: 2016/5/18 16:04
+ * @Date: 2016/6/6 16:04
  * @Description:
  * @Copyright(©) 2015 by xiaomo.
  **/
@@ -22,8 +22,6 @@ var extraTextWebpackPlugin = require('extract-text-webpack-plugin');
 module.exports = {
 
     entry: [
-        'webpack-dev-server/client?http://127.0.0.1:8080',
-        'webpack/hot/only-dev-server',
         './app/main.js'
     ],
     // 输出路径和输出文件的名字
@@ -70,12 +68,12 @@ module.exports = {
     },
     plugins: [
         new htmlWebpackPlugin({
-            template: './src/public/index.html',
+            template: './app/public/index.html',
             inject: 'body'
         }),
         new copyWebpackPlugin([
             {
-                from: __dirname + '/src/public'
+                from: __dirname + './../app/public'
             }
         ]),
         new webpack.optimize.CommonsChunkPlugin('[hash].common.js'),
@@ -87,11 +85,6 @@ module.exports = {
             compress: {
                 warnings: false
             }
-        }),
-        new webpack.ProvidePlugin({
-            React: 'react',
-            ReactDOM: 'react-dom',
-            fetch: 'imports?this=>global!exports?global.fetch!isomorphic-fetch'
         })
     ],
     postcss: [autoprefixer({

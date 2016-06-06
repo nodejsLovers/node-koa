@@ -81,9 +81,6 @@ module.exports = {
         new extraTextWebpackPlugin(
             '[hash].bundle.css'
         ),
-        new webpack.ProvidePlugin({
-            fetch: 'imports?this=>global!exports?global.fetch!isomorphic-fetch'
-        })
     ],
     postcss: [autoprefixer({
         browsers: ['last 2 version']
