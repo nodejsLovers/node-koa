@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { RouteSegment } from '@angular/router';
 
-import { TodoStoreService } from '../../services/todo-store.service';
+import { TodoStoreService } from '../../../services/todo-store.service';
 import { TodoHeaderComponent } from '../todo-header/todo-header.component';
 import { TodoFooterComponent } from '../todo-footer/todo-footer.component';
 import { TodoItemComponent } from '../todo-item/todo-item.component';

@@ -1,7 +1,23 @@
-<a [routerLink]="['/']" style="display: none">TODOS</a>
+<div class="row">
+    <div class="col-md-1 list-group" style="text-align: center">
+        <ul class="nav nav-justified nav-pills nav-stacked">
+            <li class="active"><a [routerLink]="['/']">首页<span class="sr-only">(current)</span></a></li>
+            <li class="list-group-item"><a [routerLink]="['/admin']">权限管理</a></li>
+            <li class="list-group-item"><a [routerLink]="['/blog']">博客管理</a></li>
+            <li class="list-group-item"><a [routerLink]="['/user']">用户管理</a></li>
+            <li class="list-group-item"><a [routerLink]="['/tag']">标签管理</a></li>
+            <li class="list-group-item"><a [routerLink]="['/changeLog']">更新日志</a></li>
+            <li class="list-group-item"><a [routerLink]="['/link']">友情链接</a></li>
+            <li class="list-group-item"><a [routerLink]="['/systemSet']">系统设置</a></li>
+            <li class="list-group-item"><a [routerLink]="['/goodBlog']">优秀博客</a></li>
+            <li class="list-group-item"><a [routerLink]="['/goodPlugin']">优秀插件</a></li>
+        </ul>
+    </div>
+    <div class="col-md-11">
+        <router-outlet></router-outlet>
+    </div>
+</div>
 
-<router-outlet></router-outlet>
 <footer class="info">
-    <p>Double-click to edit a todo</p>
-    <p>Written by <a href="https://github.com/blacksonic">{{ author }}</a></p>
+    <p>copyright 2016 <a href="https://github.com/qq83387856">{{ author }} all rights reversed</a></p>
 </footer>
