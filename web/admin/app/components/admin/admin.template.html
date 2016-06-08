@@ -1,8 +1,10 @@
 <section class="todoapp">
     <section class="main" *ngIf="getAdmins().length">
-        <input class="toggle-all" type="checkbox" #toggleall [checked]="allCompleted()" (click)="setAllTo(toggleall)" title="">
+        <input class="toggle-all" type="checkbox" title="">
         <ul class="todo-list">
-            <todo-item *ngFor="let todo of getTodos()" [todo]="todo" (itemRemoved)="remove($event)" (itemModified)="update($event)"></todo-item>
+            <li *ngFor="let admin of getAdmins()">
+                <div>{{admin.username}}</div>
+            </li>
         </ul>
     </section>
 </section>
