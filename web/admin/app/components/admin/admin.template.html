@@ -1,10 +1,46 @@
-<section class="todoapp">
-    <section class="main" *ngIf="getAdmins().length">
-        <input class="toggle-all" type="checkbox" title="">
-        <ul class="todo-list">
-            <li *ngFor="let admin of getAdmins()">
-                <div>{{admin.username}}</div>
-            </li>
-        </ul>
-    </section>
-</section>
+<div>
+    <div class="alert alert-info alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                aria-hidden="true">&times;</span></button>
+        <strong>提示：</strong> 欢迎来到后台管理员列表
+    </div>
+    <div class="row">
+        <div class="col-md-10">
+            <a (click)="main.addAdmin" class="btn btn-primary">新增管理员</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div>
+                <table class="table table-bordered table-hover table-striped ">
+                    <thead>
+                    <tr>
+                        <th>用户名</th>
+                        <th>等级</th>
+                        <th>操作者</th>
+                        <th>创建时间</th>
+                        <th>更新时间</th>
+                        <th colspan="3">操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let admin of getAdmins()" class="animated fadeInRight">
+                        <td>{{admin.username}}</td>
+                        <td class="alert">{{admin.authLevel}}</td>
+                        <td>{{admin.operator}}</td>
+                        <td>{{admin.created | dateFormat:'YYYY-MM-DD HH:mm:ss'}}</td>
+                        <td>{{admin.updated | dateFormat:'YYYY-MM-DD HH:mm:ss'}}</td>
+                        <td>
+                            <button class="btn btn-success" (click)="deleteAdmin($index)">修改
+                            </button>
+                            <button class="btn btn-info" (click)="deleteAdmin($index)">改密
+                            </button>
+                            <button class="btn btn-default" (click)="deleteAdmin($index)">删除</button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
