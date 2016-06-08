@@ -7,9 +7,7 @@ export class AdminStoreService {
      * 构造函数
      */
     constructor() {
-        var admins = require('./../data/admin.json');
-        console.log("后台用户:" + admins);
-        let persistedAdmins = JSON.parse(admins) || [];
+        let persistedAdmins = require('./../data/admin.json') || [];
         this.admins = persistedAdmins.map((item) => {
             return new AdminModel(
                 item.username,
