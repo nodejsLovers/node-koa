@@ -14,7 +14,7 @@ gulp.task(test, function () {
         }))
         .pipe(print())
         .pipe(jasmine())
-        .pipe(notify())
+        .pipe(notify("done!!"))
 });
 
 

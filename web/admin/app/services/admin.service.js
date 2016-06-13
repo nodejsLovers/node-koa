@@ -1,24 +1,20 @@
-import {AdminModel} from "../models/admin.model";
+import {Http, Response} from "@angular/http";
 
 export class AdminStoreService {
-    admins = [];
+    data:Object;
 
     /**
      * 构造函数
      */
-    constructor() {
-        let persistedAdmins = require('./../data/admin.json') || [];
-        this.admins = persistedAdmins.map((item) => {
-            return new AdminModel(
-                item.username,
-                item.password,
-                item.status,
-                item.salt,
-                item.authLevel,
-                item.operator,
-                Date.now(),
-                Date.now()
-            );
-        });
+    constructor(http:Http) {
+        this.http = http;
+    }
+
+    findAll():void {
+        this.http
+            .get('/data/admin.json')
+            .subscribe((res:Response) => {
+                this.data = res.json();
+            });
     }
 }

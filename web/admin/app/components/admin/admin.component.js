@@ -13,6 +13,6 @@ export class AdminComponent {
     }
 
     getAdmins() {
-        return this._adminStore.admins;
+        return this._adminStore.findAll();
     }
 }
