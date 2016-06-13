@@ -24,7 +24,8 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr *ngFor="let admin of getAdmins()" class="animated fadeInRight">
+                <section *ngIf="admins">
+                    <tr *ngFor="let admin of admins" class="animated fadeInRight">
                         <td>{{admin.username}}</td>
                         <td class="alert">{{admin.authLevel}}</td>
                         <td>{{admin.operator}}</td>
@@ -38,6 +39,7 @@
                             <button class="btn btn-default" (click)="deleteAdmin($index)">删除</button>
                         </td>
                     </tr>
+                </section>
                     </tbody>
                 </table>
             </div>

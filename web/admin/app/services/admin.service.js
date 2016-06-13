@@ -11,11 +11,10 @@ export class AdminStoreService {
     }
 
     findAll() {
-        this.http
+        return this.http
             .get('/data/admin.json')
-            .subscribe((res:Response) => {
+            .map((res:Response) => {
                 this.data = res.json();
             });
-        return this.data;
     }
 }
