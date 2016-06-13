@@ -10,11 +10,12 @@ export class AdminStoreService {
         this.http = http;
     }
 
-    findAll():void {
+    findAll() {
         this.http
             .get('/data/admin.json')
             .subscribe((res:Response) => {
                 this.data = res.json();
             });
+        return this.data;
     }
 }
