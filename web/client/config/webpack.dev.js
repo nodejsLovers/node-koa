@@ -29,7 +29,6 @@ module.exports = {
     output: {
         path: __dirname + '/../dist',
         filename: '[hash].bundle.js',
-        // publicPath: 'http://localhost:8080/',
         chunkFilename: '[hash].bundle.js'
     },
     //配置loader
@@ -100,10 +99,6 @@ module.exports = {
         noInfo: false,
         inline: true
     },
-    // externals: {
-    //     'react': 'React',
-    //     'react-dom': 'ReactDOM'
-    // },
     resolve: {
         extensions: ['', '.js', '.json']
     }
