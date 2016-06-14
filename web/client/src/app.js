@@ -14,8 +14,7 @@
  **/
 
 import {Component} from "react";
-import {Link, IndexLink} from "react-router";
-import "./styles/style.scss";
+import "bootstrap/dist/css/bootstrap.css";
 import Navbar from "./components/common/NavbarComponent";
 
 export default class App extends Component {
@@ -24,7 +23,7 @@ export default class App extends Component {
     render() {
         return (
             <div>
-                <Navbar source='/src/data/menu.json'/>
+                <Navbar/>
                 {this.props.children}
             </div>
         );

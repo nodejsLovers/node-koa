@@ -16,36 +16,7 @@
 import React, {Component} from "react";
 import {Link, IndexLink} from "react-router";
 export default class NavBar extends Component {
-
-    state = {
-        menus: [],
-        name: '',
-        path: ''
-    };
-
-    componentDidMount() {
-        const source = this.props.source;
-        fetch(source)
-            .then(result=>result.json())
-            .then(data=> {
-                this.setState({
-                    menus: data.menus
-                });
-            })
-            .catch(err=>console.log(err));
-    }
-
     render() {
-        const {menus} = this.state;
-        if (menus.length > 0) {
-            var ms = menus.map(function (menu, index) {
-                return (
-                    <li className="menu-font active" key={index}>
-                        <Link to={menu.path}>{menu.name}</Link>
-                    </li>
-                );
-            });
-        }
         return (
             <nav className="navbar navbar-default">
                 <div className="container-fluid">
@@ -55,7 +26,11 @@ export default class NavBar extends Component {
                     <div className="collapse navbar-collapse">
                         <ul className="nav navbar-nav">
                             <li className="list-unstyled"><IndexLink to={`/`}>{'首页'}</IndexLink></li>
-                            {ms}
+                            <li className="menu-font active"><Link to='/blog'>博客</Link></li>
+                            <li><Link to='/changeLog'>更新日志</Link></li>
+                            <li><Link to='/about'>关于我</Link></li>
+                            <li><Link to='/login'>登录</Link></li>
+                            <li><Link to='/register'>注册</Link></li>
                         </ul>
                     </div>
                 </div>

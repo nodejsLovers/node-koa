@@ -12,7 +12,7 @@
     "test-watch": "karma start --auto-watch --no-single-run"
   },
   "keywords": ["blog","xiaomo","react"],
-  "author": "",
+  "author": "xiaomo",
   "license": "MIT",
   "devDependencies": {
     "autoprefixer": "^6.3.6",
