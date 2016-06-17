@@ -8,7 +8,7 @@ import {DateFormat} from "./../../pipes/date.formate.pipe";
     pipes: [DateFormat]
 })
 export class AdminComponent {
-    admins:Object;
+    admins:Array;
 
     constructor(adminStore:AdminStoreService) {
         this._adminStore = adminStore;

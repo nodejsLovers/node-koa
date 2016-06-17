@@ -7,7 +7,7 @@
     "bundle": "webpack --progress --colors --profile",
     "build": "npm run clean && npm run bundle",
     "go": "webpack-dev-server --progress --colors --profile",
-    "start": "npm run build && npm run go"
+    "start": "npm run go"
   },
   "repository": {
     "type": "git",

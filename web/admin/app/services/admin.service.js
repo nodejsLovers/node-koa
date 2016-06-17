@@ -1,8 +1,7 @@
 import {Http, Response} from "@angular/http";
+import * as api from "./../url/api.url";
 
 export class AdminStoreService {
-    data:Object;
-
     /**
      * 构造函数
      */
@@ -11,10 +10,6 @@ export class AdminStoreService {
     }
 
     findAll() {
-        return this.http
-            .get('/data/admin.json')
-            .map((res:Response) => {
-                this.data = res.json();
-            });
+        return this.http.get(api.findAll).map((res:Response) => res.json().adminUsers.content);
     }
 }
