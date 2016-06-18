@@ -17,7 +17,7 @@ var htmlWebpackPlugin = require('html-webpack-plugin');
 var autoprefixer = require('autoprefixer');
 var copyWebpackPlugin = require('copy-webpack-plugin');
 var extraTextWebpackPlugin = require('extract-text-webpack-plugin');
-console.log("dev"+__dirname + '../app/public');
+console.log("dev" + __dirname + '../app/public');
 //模块化的写化
 module.exports = {
     entry: [
@@ -51,6 +51,14 @@ module.exports = {
                     'style-loader',
                     'css-loader',
                     'sass-loader',
+                    'postcss-loader'
+                )
+            }, {
+                test: /\.less$/,
+                loader: extraTextWebpackPlugin.extract(
+                    'style-loader',
+                    'css-loader',
+                    'less-loader',
                     'postcss-loader'
                 )
             }, {

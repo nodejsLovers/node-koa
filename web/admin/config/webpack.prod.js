@@ -54,6 +54,14 @@ module.exports = {
                     'postcss-loader'
                 )
             }, {
+                test: /\.less$/,
+                loader: extraTextWebpackPlugin.extract(
+                    'style-loader',
+                    'css-loader',
+                    'less-loader',
+                    'postcss-loader'
+                )
+            }, {
                 test: /\.(png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot)$/,
                 loaders: ['file-loader?limit=81920']
             }, {
