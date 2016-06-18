@@ -24,13 +24,12 @@
                     </tr>
                     </thead>
                     <tbody>
-                <section *ngIf="admins">
                     <tr *ngFor="let admin of admins" class="animated fadeInRight">
-                        <td>{{admin.username}}</td>
+                        <td>{{admin.userName}}</td>
                         <td class="alert">{{admin.authLevel}}</td>
                         <td>{{admin.operator}}</td>
-                        <td>{{admin.created | dateFormat:'YYYY-MM-DD HH:mm:ss'}}</td>
-                        <td>{{admin.updated | dateFormat:'YYYY-MM-DD HH:mm:ss'}}</td>
+                        <td>{{admin.createTime | dateFormat:'YYYY-MM-DD HH:mm:ss'}}</td>
+                        <td>{{admin.updateTime | dateFormat:'YYYY-MM-DD HH:mm:ss'}}</td>
                         <td>
                             <button class="btn btn-success" (click)="deleteAdmin($index)">修改
                             </button>
@@ -39,7 +38,6 @@
                             <button class="btn btn-default" (click)="deleteAdmin($index)">删除</button>
                         </td>
                     </tr>
-                </section>
                     </tbody>
                 </table>
             </div>

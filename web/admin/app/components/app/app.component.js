@@ -3,7 +3,6 @@ import {Routes, ROUTER_DIRECTIVES} from "@angular/router";
 
 import {TodoComponent} from "../todo/todo-list/todo-list.component"; //index
 import {AdminComponent} from "../admin/admin.component" //admin
-import {BlogComponent} from "../blog/blog.component" //blog
 import {UserComponent} from "../user/user.component" //user
 import {TagComponent} from "../tag/tag.component" //tag
 import {FriendLinkComponent} from "../friendLink/friendLink.component" //link
@@ -20,7 +19,6 @@ import {SystemSetComponent} from "../systemSet/systemSet.component"; //systemSet
 @Routes([
     {path: '/', component: TodoComponent},
     {path: '/admin', component: AdminComponent},
-    {path: '/blog', component: BlogComponent},
     {path: '/user', component: UserComponent},
     {path: '/tag', component: TagComponent},
     {path: '/friendLink', component: FriendLinkComponent},
