@@ -1,106 +1,228 @@
+const helpers = require('./helpers');
+const webpackMerge = require('webpack-merge'); // used to merge webpack configs
+const commonConfig = require('./webpack.common.js'); // the settings that are common to prod and dev
+
 /**
- * 把今天最好的表现当作明天最新的起点．．～
- * いま 最高の表現 として 明日最新の始発．．～
- * Today the best performance  as tomorrow newest starter!
- * Created by IntelliJ IDEA.
- *
- * @author: xiaomo
- * @github: https://github.com/qq83387856
- * @email: hupengbest@163.com
- * @QQ_NO: 83387856
- * @Date: 2016/6/6 16:04
- * @Description:
- * @Copyright(©) 2015 by xiaomo.
- **/
-var webpack = require('webpack');
-var path = require('path');
-var htmlWebpackPlugin = require('html-webpack-plugin');
-var autoprefixer = require('autoprefixer');
-var copyWebpackPlugin = require('copy-webpack-plugin');
-var extraTextWebpackPlugin = require('extract-text-webpack-plugin');
-//模块化的写化
-module.exports = {
+ * Webpack Plugins
+ */
+const ProvidePlugin = require('webpack/lib/ProvidePlugin');
+const DefinePlugin = require('webpack/lib/DefinePlugin');
+const DedupePlugin = require('webpack/lib/optimize/DedupePlugin');
+const UglifyJsPlugin = require('webpack/lib/optimize/UglifyJsPlugin');
+const CompressionPlugin = require('compression-webpack-plugin');
+const WebpackMd5Hash = require('webpack-md5-hash');
 
-    entry: [
-        './app/main.js'
-    ],
-    // 输出路径和输出文件的名字
-    output: {
-        path: __dirname + '/../dist',
-        filename: '[hash].bundle.js'
-    },
-    //配置loader
-    module: {
-        loaders: [
-            {
-                test: /\.js$/,
-                loaders: ['babel-loader'],
-                exclude: /node_modules/
-            },
-            {
-                test: /\.css$/,
-                loader: extraTextWebpackPlugin.extract(
-                    'style-loader',
-                    'css-loader',
-                    'postcss-loader'
-                )
-            },
-            {
-                test: /\.scss$/,
-                loader: extraTextWebpackPlugin.extract(
-                    'style-loader',
-                    'css-loader',
-                    'sass-loader',
-                    'postcss-loader'
-                )
-            }, {
-                test: /\.less$/,
-                loader: extraTextWebpackPlugin.extract(
-                    'style-loader',
-                    'css-loader',
-                    'less-loader',
-                    'postcss-loader'
-                )
-            }, {
-                test: /\.(png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot)$/,
-                loaders: ['file-loader?limit=81920']
-            }, {
-                test: /\.json$/,
-                loaders: ['json-loader']
-            }, {
-                test: /\.html$/,
-                loader: 'raw'
-            }
+/**
+ * Webpack Constants
+ */
+const ENV = process.env.NODE_ENV = process.env.ENV = 'production';
+const HOST = process.env.HOST || 'localhost';
+const PORT = process.env.PORT || 8080;
+const METADATA = webpackMerge(commonConfig.metadata, {
+  host: HOST,
+  port: PORT,
+  ENV: ENV,
+  HMR: false,
+  baseUrl: ''
+});
 
-        ]
-    },
-    plugins: [
-        new htmlWebpackPlugin({
-            template: './public/index.html',
-            inject: 'body'
-        }),
-        new copyWebpackPlugin([
-            {
-                from: __dirname + './../public'
-            }
-        ]),
-        new webpack.optimize.CommonsChunkPlugin('[hash].common.js'),
-        new webpack.HotModuleReplacementPlugin(),
-        new extraTextWebpackPlugin(
-            '[hash].[name].css'
-        ),
-        new webpack.optimize.UglifyJsPlugin({
-            compress: {
-                warnings: false
-            }
-        })
+module.exports = webpackMerge(commonConfig, {
+
+  metadata: METADATA,
+  /**
+   * Switch loaders to debug mode.
+   *
+   * See: http://webpack.github.io/docs/configuration.html#debug
+   */
+  debug: false,
+
+  /**
+   * Developer tool to enhance debugging
+   *
+   * See: http://webpack.github.io/docs/configuration.html#devtool
+   * See: https://github.com/webpack/docs/wiki/build-performance#sourcemaps
+   */
+  devtool: 'source-map',
+
+  /**
+   * Options affecting the output of the compilation.
+   *
+   * See: http://webpack.github.io/docs/configuration.html#output
+   */
+  output: {
+
+    /**
+     * The output directory as absolute path (required).
+     *
+     * See: http://webpack.github.io/docs/configuration.html#output-path
+     */
+    path: helpers.root('dist'),
+
+    /**
+     * Specifies the name of each output file on disk.
+     * IMPORTANT: You must not specify an absolute path here!
+     *
+     * See: http://webpack.github.io/docs/configuration.html#output-filename
+     */
+    filename: '[name].[chunkhash].bundle.js',
+
+    /**
+     * The filename of the SourceMaps for the JavaScript files.
+     * They are inside the output.path directory.
+     *
+     * See: http://webpack.github.io/docs/configuration.html#output-sourcemapfilename
+     */
+    sourceMapFilename: '[name].[chunkhash].bundle.map',
+
+    /**
+     * The filename of non-entry chunks as relative path
+     * inside the output.path directory.
+     *
+     * See: http://webpack.github.io/docs/configuration.html#output-chunkfilename
+     */
+    chunkFilename: '[id].[chunkhash].chunk.js'
+
+  },
+
+  /**
+   * Add additional plugins to the compiler.
+   *
+   * See: http://webpack.github.io/docs/configuration.html#plugins
+   */
+  plugins: [
+
+    /**
+     * Plugin: WebpackMd5Hash
+     * Description: Plugin to replace a standard webpack chunkhash with md5.
+     *
+     * See: https://www.npmjs.com/package/webpack-md5-hash
+     */
+    new WebpackMd5Hash(),
+
+    /**
+     * Plugin: DedupePlugin
+     * Description: Prevents the inclusion of duplicate code into your bundle
+     * and instead applies a copy of the function at runtime.
+     *
+     * See: https://webpack.github.io/docs/list-of-plugins.html#defineplugin
+     * See: https://github.com/webpack/docs/wiki/optimization#deduplication
+     */
+    new DedupePlugin(),
+
+    /**
+     * Plugin: DefinePlugin
+     * Description: Define free variables.
+     * Useful for having development builds with debug logging or adding global constants.
+     *
+     * Environment helpers
+     *
+     * See: https://webpack.github.io/docs/list-of-plugins.html#defineplugin
+     */
+    // NOTE: when adding more properties make sure you include them in custom-typings.d.ts
+    new DefinePlugin({
+      'ENV': JSON.stringify(METADATA.ENV),
+      'HMR': METADATA.HMR,
+      'process.env': {
+        'ENV': JSON.stringify(METADATA.ENV),
+        'NODE_ENV': JSON.stringify(METADATA.ENV),
+        'HMR': METADATA.HMR,
+      }
+    }),
+
+    /**
+     * Plugin: UglifyJsPlugin
+     * Description: Minimize all JavaScript output of chunks.
+     * Loaders are switched into minimizing mode.
+     *
+     * See: https://webpack.github.io/docs/list-of-plugins.html#uglifyjsplugin
+     */
+    // NOTE: To debug prod builds uncomment //debug lines and comment //prod lines
+    new UglifyJsPlugin({
+      // beautify: true, //debug
+      // mangle: false, //debug
+      // dead_code: false, //debug
+      // unused: false, //debug
+      // deadCode: false, //debug
+      // compress: {
+      //   screw_ie8: true,
+      //   keep_fnames: true,
+      //   drop_debugger: false,
+      //   dead_code: false,
+      //   unused: false
+      // }, // debug
+      // comments: true, //debug
+
+      beautify: false, //prod
+
+      mangle: {
+        screw_ie8 : true,
+        keep_fnames: true
+      }, //prod
+
+      compress: {
+        screw_ie8: true
+      }, //prod
+
+      comments: false //prod
+    }),
+
+    /**
+     * Plugin: CompressionPlugin
+     * Description: Prepares compressed versions of assets to serve
+     * them with Content-Encoding
+     *
+     * See: https://github.com/webpack/compression-webpack-plugin
+     */
+    new CompressionPlugin({
+      regExp: /\.css$|\.html$|\.js$|\.map$/,
+      threshold: 2 * 1024
+    })
+
+  ],
+
+  /**
+   * Static analysis linter for TypeScript advanced options configuration
+   * Description: An extensible linter for the TypeScript language.
+   *
+   * See: https://github.com/wbuchwalter/tslint-loader
+   */
+  tslint: {
+    emitErrors: true,
+    failOnHint: true,
+    resourcePath: 'src'
+  },
+
+  /**
+   * Html loader advanced options
+   *
+   * See: https://github.com/webpack/html-loader#advanced-options
+   */
+  // TODO: Need to workaround Angular 2's html syntax => #id [bind] (event) *ngFor
+  htmlLoader: {
+    minimize: true,
+    removeAttributeQuotes: false,
+    caseSensitive: true,
+    customAttrSurround: [
+      [/#/, /(?:)/],
+      [/\*/, /(?:)/],
+      [/\[?\(?/, /(?:)/]
     ],
-    postcss: [autoprefixer({
-        browsers: ['last 2 version']
-    })],
-    resolve: {
-        extensions: ['', '.js', '.json']
-    },
-    devtool: false
-}
-;
+    customAttrAssign: [/\)?\]?=/]
+  },
+
+  /*
+   * Include polyfills or mocks for various node stuff
+   * Description: Node configuration
+   *
+   * See: https://webpack.github.io/docs/configuration.html#node
+   */
+  node: {
+    global: 'window',
+    crypto: 'empty',
+    process: false,
+    module: false,
+    clearImmediate: false,
+    setImmediate: false
+  }
+
+});

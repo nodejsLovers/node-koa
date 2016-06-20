@@ -1,106 +1,163 @@
 /**
- * 把今天最好的表现当作明天最新的起点．．～
- * いま 最高の表現 として 明日最新の始発．．～
- * Today the best performance  as tomorrow newest starter!
- * Created by IntelliJ IDEA.
- *
- * @author: xiaomo
- * @github: https://github.com/qq83387856
- * @email: hupengbest@163.com
- * @QQ_NO: 83387856
- * @Date: 2016/6/6 16:04
- * @Description:
- * @Copyright(©) 2015 by xiaomo.
- **/
-var webpack = require('webpack');
-var htmlWebpackPlugin = require('html-webpack-plugin');
-var autoprefixer = require('autoprefixer');
-var copyWebpackPlugin = require('copy-webpack-plugin');
-var extraTextWebpackPlugin = require('extract-text-webpack-plugin');
-console.log("dev" + __dirname + '../app/public');
-//模块化的写化
-module.exports = {
-    entry: [
-        './app/main.js'
-    ],
-    // 输出路径和输出文件的名字
-    output: {
-        path: __dirname + '/../dist',
-        filename: '[hash].bundle.js',
-        chunkFilename: '[hash].bundle.js'
-    },
-    //配置loader
-    module: {
-        loaders: [
-            {
-                test: /\.js$/,
-                loaders: ['babel-loader'],
-                exclude: /node_modules/
-            },
-            {
-                test: /\.css$/,
-                loader: extraTextWebpackPlugin.extract(
-                    'style-loader',
-                    'css-loader',
-                    'postcss-loader'
-                )
-            },
-            {
-                test: /\.scss$/,
-                loader: extraTextWebpackPlugin.extract(
-                    'style-loader',
-                    'css-loader',
-                    'sass-loader',
-                    'postcss-loader'
-                )
-            }, {
-                test: /\.less$/,
-                loader: extraTextWebpackPlugin.extract(
-                    'style-loader',
-                    'css-loader',
-                    'less-loader',
-                    'postcss-loader'
-                )
-            }, {
-                test: /\.(png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot)$/,
-                loaders: ['file-loader?limit=81920']
-            }, {
-                test: /\.json$/,
-                loaders: ['json-loader']
-            }, {
-                test: /\.html$/,
-                loader: 'raw'
-            }
+ * @author: @AngularClass
+ */
 
-        ]
+const helpers = require('./helpers');
+const webpackMerge = require('webpack-merge'); // used to merge webpack configs
+const commonConfig = require('./webpack.common.js'); // the settings that are common to prod and dev
+
+/**
+ * Webpack Plugins
+ */
+const DefinePlugin = require('webpack/lib/DefinePlugin');
+
+/**
+ * Webpack Constants
+ */
+const ENV = process.env.ENV = process.env.NODE_ENV = 'development';
+const HMR = helpers.hasProcessFlag('hot');
+const METADATA = webpackMerge(commonConfig.metadata, {
+  host: 'localhost',
+  port: 3000,
+  ENV: ENV,
+  HMR: HMR
+});
+
+/**
+ * Webpack configuration
+ *
+ * See: http://webpack.github.io/docs/configuration.html#cli
+ */
+module.exports = webpackMerge(commonConfig, {
+
+  /**
+   * Merged metadata from webpack.common.js for index.html
+   *
+   * See: (custom attribute)
+   */
+  metadata: METADATA,
+
+  /**
+   * Switch loaders to debug mode.
+   *
+   * See: http://webpack.github.io/docs/configuration.html#debug
+   */
+  debug: true,
+
+  /**
+   * Developer tool to enhance debugging
+   *
+   * See: http://webpack.github.io/docs/configuration.html#devtool
+   * See: https://github.com/webpack/docs/wiki/build-performance#sourcemaps
+   */
+  devtool: 'cheap-module-eval-source-map',
+
+  /**
+   * Options affecting the output of the compilation.
+   *
+   * See: http://webpack.github.io/docs/configuration.html#output
+   */
+  output: {
+
+    /**
+     * The output directory as absolute path (required).
+     *
+     * See: http://webpack.github.io/docs/configuration.html#output-path
+     */
+    path: helpers.root('dist'),
+
+    /**
+     * Specifies the name of each output file on disk.
+     * IMPORTANT: You must not specify an absolute path here!
+     *
+     * See: http://webpack.github.io/docs/configuration.html#output-filename
+     */
+    filename: '[name].bundle.js',
+
+    /**
+     * The filename of the SourceMaps for the JavaScript files.
+     * They are inside the output.path directory.
+     *
+     * See: http://webpack.github.io/docs/configuration.html#output-sourcemapfilename
+     */
+    sourceMapFilename: '[name].map',
+
+    /** The filename of non-entry chunks as relative path
+     * inside the output.path directory.
+     *
+     * See: http://webpack.github.io/docs/configuration.html#output-chunkfilename
+     */
+    chunkFilename: '[id].chunk.js'
+
+  },
+
+  plugins: [
+
+    /**
+     * Plugin: DefinePlugin
+     * Description: Define free variables.
+     * Useful for having development builds with debug logging or adding global constants.
+     *
+     * Environment helpers
+     *
+     * See: https://webpack.github.io/docs/list-of-plugins.html#defineplugin
+     */
+    // NOTE: when adding more properties, make sure you include them in custom-typings.d.ts
+    new DefinePlugin({
+      'ENV': JSON.stringify(METADATA.ENV),
+      'HMR': METADATA.HMR,
+      'process.env': {
+        'ENV': JSON.stringify(METADATA.ENV),
+        'NODE_ENV': JSON.stringify(METADATA.ENV),
+        'HMR': METADATA.HMR,
+      }
+    })
+  ],
+
+  /**
+   * Static analysis linter for TypeScript advanced options configuration
+   * Description: An extensible linter for the TypeScript language.
+   *
+   * See: https://github.com/wbuchwalter/tslint-loader
+   */
+  tslint: {
+    emitErrors: false,
+    failOnHint: false,
+    resourcePath: 'src'
+  },
+
+  /**
+   * Webpack Development Server configuration
+   * Description: The webpack-dev-server is a little node.js Express server.
+   * The server emits information about the compilation state to the client,
+   * which reacts to those events.
+   *
+   * See: https://webpack.github.io/docs/webpack-dev-server.html
+   */
+  devServer: {
+    port: METADATA.port,
+    host: METADATA.host,
+    historyApiFallback: true,
+    watchOptions: {
+      aggregateTimeout: 300,
+      poll: 1000
     },
-    plugins: [
-        new htmlWebpackPlugin({
-            template: './public/index.html',
-            inject: 'body'
-        }),
-        new copyWebpackPlugin([
-            {
-                from: __dirname + './../public'
-            }
-        ]),
-        new webpack.optimize.CommonsChunkPlugin('[hash].common.js'),
-        new webpack.HotModuleReplacementPlugin(),
-        new extraTextWebpackPlugin(
-            '[hash].bundle.css'
-        )
-    ],
-    postcss: [autoprefixer({
-        browsers: ['last 2 version']
-    })],
-    devtool: 'inline-source-map',
-    devServer: {
-        historyApiFallback: true,
-        hot: true,
-        noInfo: false,
-        inline: true
-    },
-    resolve: {
-        extensions: ['', '.js', '.json']
-    }
-};
+    outputPath: helpers.root('dist')
+  },
+
+  /*
+   * Include polyfills or mocks for various node stuff
+   * Description: Node configuration
+   *
+   * See: https://webpack.github.io/docs/configuration.html#node
+   */
+  node: {
+    global: 'window',
+    crypto: 'empty',
+    process: true,
+    module: false,
+    clearImmediate: false,
+    setImmediate: false
+  }
+
+});
